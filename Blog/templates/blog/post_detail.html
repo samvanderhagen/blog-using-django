@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap_icons %}
+{% block content %}
+    <article class="post">
+        {% if post.published_date %}
+        <time class="date">{{post.published_date}}</time>
+        {% endif %}
+        <h2>{{post.title}}</h2>
+        <p>{{post.text|linebreaksbr}}</p>
+        <aside class="actions">
+        {% if user.is_authenticated %}
+            <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
+              {% bs_icon 'pencil-fill' size='1.5rem' %}
+            </a>
+        {% endif %}
+        </aside>
+    </article>
+{% endblock %}
